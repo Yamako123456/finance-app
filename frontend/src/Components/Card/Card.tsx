@@ -1,7 +1,7 @@
 import React from 'react'
 import "./Card.css";
 
-type Props = {}
+type Props = {};
 
 const Card = (props: Props) => {
   return <div className="card">
