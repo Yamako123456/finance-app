@@ -1,16 +1,19 @@
-import React from 'react'
+import React, { JSX } from 'react'
 import "./Card.css";
+import { JsxElement } from 'typescript';
 
 interface Props {
   companyName: string;
   ticker: string;
-  price: number
+  price: number;
+  imgLink: string
 };
 
-const Card = ({ companyName, ticker, price }: Props) => {
+const Card: React.FC<Props> = ({ companyName, ticker, price, imgLink }: Props): JSX.Element => {
+
   return <div className="card">
     <img
-      src='https://plus.unsplash.com/premium_photo-1680404114169-e254afa55a16?q=80&w=764&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
+      src={imgLink}
       alt='image'
     />
     <div className='details'>
