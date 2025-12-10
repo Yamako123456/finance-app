@@ -11,7 +11,7 @@ const root = ReactDOM.createRoot(
 console.log("tesla test");
 console.log(searchCompanies("tsla"));
 root.render(
-  <React.StrictMode>s
+  <React.StrictMode>
     <App />
   </React.StrictMode>
 );
