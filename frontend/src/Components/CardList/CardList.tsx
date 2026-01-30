@@ -1,4 +1,4 @@
-import React, { JSX } from 'react'
+import React, { JSX, SyntheticEvent } from 'react'
 import Card from '../Card/Card';
 import { JsxEmit } from 'typescript';
 import { CompanySearch } from '../../company';
@@ -11,15 +11,16 @@ import { v4 as uuidv4} from "uuid";
 
 interface Props {
   searchResuls: CompanySearch[];
+  onPortfolioCreate: (e: SyntheticEvent) => void;
 };
 
-const CardList: React.FC<Props> = ({searchResuls}: Props): JSX.Element => {
+const CardList: React.FC<Props> = ({searchResuls, onPortfolioCreate}: Props): JSX.Element => {
   return <>
  
     {searchResuls.length > 0 ? (
       
       searchResuls.map((result) =>{
-        return <Card id={result.symbol} key={uuidv4()} searchResult={result} />    
+        return <Card id={result.symbol} key={uuidv4()} searchResult={result} onPortfolioCreate={onPortfolioCreate}/>    
         
        })
     ) : (

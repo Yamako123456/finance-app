@@ -1,14 +1,16 @@
-import React, { JSX } from 'react'
+import React, { JSX, SyntheticEvent } from 'react'
 import "./Card.css";
 import { JsxElement } from 'typescript';
 import { CompanySearch } from '../../company';
+import AddPortfolio from '../Portfolio/AddPortfolio/AddPortfolio';
 
 interface Props {
   id: string;
   searchResult: CompanySearch;
+  onPortfolioCreate: (e: SyntheticEvent) => void;
 };
 
-function Card({ id, searchResult}: Props): JSX.Element {
+function Card({ id, searchResult, onPortfolioCreate}: Props): JSX.Element {
 
   return <div className="card">
     <img 
@@ -23,6 +25,7 @@ function Card({ id, searchResult}: Props): JSX.Element {
     <p className='info'>
       {searchResult.exchangeFullName} - {searchResult.exchange}
     </p>
+    <AddPortfolio onPortfolioCreate={onPortfolioCreate} symbol={searchResult.symbol}/>
   </div>;
 
 }
