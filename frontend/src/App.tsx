@@ -18,6 +18,7 @@ function App() {
     console.log(e);
   };
 
+  // Turn off TypeScript because impossible to figure out the type of event object: e.
   const onPortfolioCreate = (e: any ) => {
     // console.log("onPortfolioCreate event e = ", e);
     e.preventDefault();
@@ -25,6 +26,17 @@ function App() {
     if (exists) return;
     const updatedPortfolio = [...portfolioValues, e.target[0].value];
     setPortfolioValues(updatedPortfolio);
+  }
+
+  //Turn off TypeScript
+  const onPortfolioDelete = (e: any) => {
+    e.preventDefault(); // Prevent the page reload when submit buuton is pressed.
+    //Crate new array for filtered result
+    const removed = portfolioValues.filter((value) => {
+      //e.target is a list of form elements.
+      return value !== e.target[0].value;
+    });
+    setPortfolioValues(removed);
   }
 
   const onSearchSubmit = async (e: SyntheticEvent) => {
@@ -44,10 +56,20 @@ function App() {
 
   return (
     <div className="App">
-      <Search onSearchSubmit={onSearchSubmit} search={search} handleSearchChange={handleSearchChange} />
+      <Search 
+        onSearchSubmit={onSearchSubmit} 
+        search={search} 
+        handleSearchChange={handleSearchChange} 
+      />
       {serverError && <h1>serverError</h1>}
-      <ListPortfolio portfolioValues={portfolioValues}/>
-      <CardList searchResuls={searchResult} onPortfolioCreate={onPortfolioCreate}/>
+      <ListPortfolio 
+        portfolioValues={portfolioValues} 
+        onPortfolioDelete={onPortfolioDelete} 
+      />
+      <CardList 
+        searchResuls={searchResult} 
+        onPortfolioCreate={onPortfolioCreate}
+      />
     </div>
   );
 }
